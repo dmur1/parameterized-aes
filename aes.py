@@ -1,3 +1,5 @@
+AES_POLYNOMIAL = 0x11B
+
 def multiply_in_gf2(a, b, mod):
     result = 0
     while b:
@@ -9,10 +11,10 @@ def multiply_in_gf2(a, b, mod):
         b >>= 1
     return result
 
-def compute_round_constant(round, aes_polynomial):
+def compute_round_constant(round):
     round_constant = 1
     for i in range(1, round):
-        round_constant = multiply_in_gf2(2, round_constant, aes_polynomial)
+        round_constant = multiply_in_gf2(2, round_constant, AES_POLYNOMIAL)
     return round_constant
 
 for i in range(1, 10):
